@@ -21,7 +21,7 @@ services:
     depends_on:
       - db
     volumes:
-      - workshop:/mnt
+      - workshop:/srv
 
   db:
     image: postgres:13
