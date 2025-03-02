@@ -7,7 +7,7 @@ RUN gradle --no-daemon shadowJar && \
     mkdir -p \
     /mnt/bin \
     /mnt/etc \
-    /mnt/lib \
+    /mnt/lib/server \
     /mnt/mnt \
     && \
     echo /lib >> /mnt/etc/ld-musl-$(uname -m).path && \
@@ -16,6 +16,7 @@ RUN gradle --no-daemon shadowJar && \
     install /usr/lib/jvm/java-21-openjdk/lib/libjli.so /mnt/lib && \
     install /usr/lib/jvm/java-21-openjdk/lib/libjava.so /mnt/lib && \
     install /usr/lib/jvm/java-21-openjdk/lib/jvm.cfg /mnt/lib && \
+    install /usr/lib/jvm/java-21-openjdk/lib/server/libjvm.so /mnt/lib/server && \
     install /lib/ld-musl-$(uname -m).so.1 /mnt/lib && \
     install /bin/busybox /mnt/bin && \
     install /usr/bin/java /mnt/bin
