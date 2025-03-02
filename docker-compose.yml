@@ -1,11 +1,9 @@
 services:
-  temurin:
-    image: alpine-java
+  alpine:
+    image: "alpine:latest"
     container_name: alpine-java
     build:
-      target: temurin
-    depends_on:
-      - gradle
+      target: alpine
     volumes:
       - workshop:/srv
 
