@@ -1,0 +1,42 @@
+services:
+  temurin:
+    image: alpine-java
+    container_name: alpine-java
+    build:
+      target: temurin
+    depends_on:
+      - gradle
+    volumes:
+      - workshop:/srv
+
+  workshop:
+    image: workshop
+    container_name: workshop
+    ports:
+      - "8080:8080"
+    build:
+      target: workshop
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://db:5432/workshopsdb"
+      SPRING_DATASOURCE_USERNAME: workshops_user
+      SPRING_DATASOURCE_PASSWORD: oc2024
+    depends_on:
+      - db
+    volumes:
+      - workshop:/mnt
+
+  db:
+    image: postgres:13
+    container_name: db
+    environment:
+      POSTGRES_USER: workshops_user
+      POSTGRES_PASSWORD: oc2024
+      POSTGRES_DB: workshopsdb
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+volumes:
+  postgres:
+  workshop:
+      
+
