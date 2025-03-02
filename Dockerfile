@@ -1,5 +1,5 @@
 FROM alpine:latest AS alpine
-RUN apk add openjdk gradle git
+RUN apk add openjdk21 gradle git
 VOLUME /srv
 WORKDIR /srv
 RUN git clone https://github.com/pmarquesmota/oc-java.git /srv && \
