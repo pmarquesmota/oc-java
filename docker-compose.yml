@@ -1,6 +1,6 @@
 services:
   alpine:
-    image: alpine:latest
+    image: alpine-java
     container_name: alpine-java
     build:
       target: alpine

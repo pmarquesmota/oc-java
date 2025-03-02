@@ -1,9 +1,9 @@
 FROM alpine:latest AS alpine
-RUN apk add openjdk21 gradle git
+RUN apk add openjdk21 gradle
 VOLUME /srv
+COPY . /srv
 WORKDIR /srv
-RUN git clone https://github.com/pmarquesmota/oc-java.git /srv && \
-    gradle --no-daemon shadowJar && \
+RUN gradle --no-daemon shadowJar && \
     mkdir -p \
     /mnt/bin \
     /mnt/etc \
@@ -14,6 +14,8 @@ RUN git clone https://github.com/pmarquesmota/oc-java.git /srv && \
     install /usr/lib/libz.so.1 /mnt/lib && \
     install /usr/lib/libz.so.1.3.1 /mnt/lib && \
     install /usr/lib/jvm/java-21-openjdk/lib/libjli.so /mnt/lib && \
+    install /usr/lib/jvm/java-21-openjdk/lib/libjava.so /mnt/lib && \
+    install /usr/lib/jvm/java-21-openjdk/lib/jvm.cfg /mnt/lib && \
     install /lib/ld-musl-$(uname -m).so.1 /mnt/lib && \
     install /bin/busybox /mnt/bin && \
     install /usr/bin/java /mnt/bin
