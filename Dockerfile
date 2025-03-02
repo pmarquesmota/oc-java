@@ -3,7 +3,7 @@ RUN apk add openjdk21 gradle
 VOLUME /srv
 COPY . /srv
 WORKDIR /srv
-RUN gradle --no-daemon shadowJar && \
+RUN gradle --no-daemon jar && \
     mkdir -p \
     /mnt/bin \
     /mnt/etc \
